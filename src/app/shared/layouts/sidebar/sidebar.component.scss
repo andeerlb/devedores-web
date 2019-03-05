@@ -1,0 +1,69 @@
+@import '../../theme/conf';
+.pages-sider {
+    width: 250px;
+    height: 100%;
+    background: $sidebar-bg;
+    overflow-x: hidden;
+    @include transition(all .5s);
+    border: none;
+    .sidebar-top-line {
+        display: block;
+        width: 80%;
+        position: relative;
+        left: 10%;
+        border-top: 1px solid $border-color;
+    }
+}
+
+.collapse-menu-hide {
+    left:0px !important;
+    color: #000000 !important;
+}
+
+.collapse-menu {
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+    left: 210px;
+    transform: translate(0, -50%);
+    color: $sidebar-fonts-color;
+    font-size: 24px;
+    cursor: pointer;
+    @include transition(all .5s);
+    &:hover {
+        color: $warning;
+    }
+    .toggle-on {
+        transform: rotate(0);
+        @include transition(all .5s);
+    }
+    .toggle-off {
+        transform: rotate(-270deg);
+        @include transition(all .5s);
+    }
+}
+
+.side-collapsed {
+    width: 0;
+}
+
+@media (max-width:1440px) {
+    .collapse-menu {
+        left: 170px;
+    }
+    .pages-sider {
+        width: 210px;
+    }
+    .side-collapsed {
+        width: 0;
+    }
+}
+
+@media (max-width:970px) {
+    .collapse-menu {
+        display: none;
+    }
+    .pages-sider {
+        width: 0;
+    }
+}

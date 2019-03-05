@@ -1,0 +1,9 @@
+<card emptyCardContent="true" cardTitle="Usuários cadastrados" 
+        [navigate]="create.bind(this)" 
+        [sync]="importFromJsonPlaceholderAPI.bind(this)"
+        titleNavigate="Cadastrar novo usuário">
+        <app-custom-data-table [displayedColumns]="displayedColumns" 
+                [getAll]="getAll.bind(this)"
+                [delete]="delete.bind(this)">
+        </app-custom-data-table>
+</card>

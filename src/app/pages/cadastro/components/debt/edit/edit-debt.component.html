@@ -1,0 +1,48 @@
+<card [cardTitle]="title" emptyCardContent="users.length === 0" [navigate]="back.bind(this)" backButton="true">
+
+  <div class="jumbotron mb-0" *ngIf="users.length === 0">
+    <h1 class="display-4">Seja Bem-Vindo</h1>
+    <p class="lead">Para poder cadastrar uma dívida, você precisa primeiro iniciar o cadastro de usuário.</p>
+    <hr class="my-4">
+    <p>Clique no botão para ir até a pagina de usuários.</p>
+    <button class="btn btn-primary btn-lg float-right" (click)="navigateToRegisterUsers();">Cadastro de usuários</button>
+  </div>
+  <div class="container" *ngIf="users.length > 0">
+    <form [formGroup]="debtForm" class="mt-2">
+      <div class="row m-0">
+        <mat-form-field>
+          <mat-select placeholder="Usuário" formControlName="userId" required>
+            <mat-option *ngFor="let user of users" [value]="user.id">
+              {{user.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="f.userId.invalid">{{getErrorMessage(f.userId)}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Motivo" formControlName="reason" required>
+          <mat-error *ngIf="f.reason.invalid">{{getErrorMessage(f.reason)}}</mat-error>
+        </mat-form-field>
+
+        <div class="col p-0 mr-2">
+          <mat-form-field>
+            <input type="number" min="1" matInput placeholder="Valor" formControlName="value" required>
+            <mat-error *ngIf="f.value.invalid">{{getErrorMessage(f.value)}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col p-0 ml-2">
+          <mat-form-field>
+            <input matInput formControlName="startDate" 
+                  [matDatepicker]="picker" placeholder="Selecione uma data">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker disabled="false"></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+    <button class="btn btn-primary float-right mt-2" type="submit" (click)="onSubmit();" [disabled]="debtForm.invalid">
+      {{!id ? 'Cadastrar' : 'Atualizar'}}
+    </button>
+  </div>
+</card>

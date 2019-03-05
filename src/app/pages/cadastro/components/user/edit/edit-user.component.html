@@ -1,0 +1,53 @@
+<card [cardTitle]="title" [navigate]="back.bind(this)" backButton="true">
+
+  <div class="container">
+    <form [formGroup]="userForm">
+      <mat-form-field>
+        <input matInput placeholder="Nome" formControlName="name" required>
+        <mat-error *ngIf="f.name.invalid">{{getErrorMessage(f.name)}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Usuário" formControlName="username" required>
+        <mat-error *ngIf="f.username.invalid">{{getErrorMessage(f.username)}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="E-mail" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Telefone" formControlName="phone">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Site" formControlName="website">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Cidade" formControlName="city">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Rua" formControlName="street">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Case/Apartamento" formControlName="suite">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Cep" formControlName="zipcode">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="number" min="1" matInput placeholder="Latitude" formControlName="lat">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="number" min="1" matInput placeholder="Longitude" formControlName="lng">
+      </mat-form-field>
+    </form>
+    <button class="btn btn-primary float-right mt-2" type="submit" (click)="onSubmit();"
+      [disabled]="!importFromJsonPlaceholder && userForm.invalid">
+      {{!id ? 'Cadastrar' : 'Atualizar'}}
+    </button>
+  </div>
+</card>

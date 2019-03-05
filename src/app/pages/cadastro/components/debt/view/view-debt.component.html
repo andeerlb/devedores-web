@@ -1,0 +1,34 @@
+<div class="jumbotron p-1 mb-1">
+        <h1 class="ml-2 display-6">Filtros</h1>
+        <form [formGroup]="filterForm">
+                <div class="row col p-0 ml-0">
+                        <div class="col p-0 ml-5 mr-5">
+                                <mat-form-field>
+                                        <mat-select placeholder="Filtrar por usuário" formControlName="userId"
+                                                (selectionChange)="onSubmitFilters()">
+                                                <mat-option>---</mat-option>
+                                                <mat-option *ngFor="let user of users" [value]="user.id">
+                                                        {{user.name}}
+                                                </mat-option>
+                                        </mat-select>
+                                </mat-form-field>
+                        </div>
+                        <div class="col p-0 ml-5 mr-5">
+                                <mat-form-field>
+                                        <input matInput formControlName="startDate" [matDatepicker]="picker"
+                                                placeholder="Filtrar por data" (dateChange)="onSubmitFilters()">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker disabled="false"></mat-datepicker>
+                                </mat-form-field>
+                        </div>
+                </div>
+        </form>
+        <button class="btn btn-outline-secondary ml-5 mb-2" (click)="clearFilters()">Limpar filtros</button>
+</div>
+
+<card emptyCardContent="true" cardTitle="Dívidas cadastrados" [navigate]="create.bind(this)"
+        titleNavigate="Cadastrar nova dívida">
+        <app-custom-data-table [displayedColumns]="displayedColumns" [getAll]="getAll.bind(this)"
+                [delete]="delete.bind(this)">
+        </app-custom-data-table>
+</card>
